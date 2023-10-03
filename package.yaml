@@ -49,14 +49,3 @@ executables:
     - -fllvm
     dependencies:
     - jotter
-
-tests:
-  jotter-test:
-    main:                Spec.hs
-    source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - jotter

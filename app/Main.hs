@@ -1,3 +1,5 @@
+{-# LANGUAGE LambdaCase #-}
+
 module Main
   ( main
   ) where
@@ -18,6 +20,5 @@ main :: IO ()
 main = do
   args <- getArgs
   case args of
-    -- ["transpile", path] -> transpile path
     ["reduce", path] -> reduce path
     _                -> putStrLn "Usage: jotter [transpile|reduce] <file>"
