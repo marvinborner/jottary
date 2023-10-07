@@ -29,6 +29,8 @@ $ hyperfine "jottary reduce <(printf '1%.0s' {1..503})"
   Range (min … max):     9.5 ms …  12.5 ms    163 runs
 ```
 
+:rocket: incredible!! :tada:
+
 ## Transpiler
 
 The transpiler converts binary lambda calculus to Jottary. It does this
