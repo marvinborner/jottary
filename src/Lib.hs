@@ -1,10 +1,5 @@
-{-# LANGUAGE LambdaCase #-}
-
 module Lib
   ( fromJottary
-  , s
-  , k
-  , i
   ) where
 
 import           Control.Monad                  ( replicateM )

@@ -25,6 +25,7 @@ library
   exposed-modules:
       Lib
       Term
+      Transpile
       Utils
   other-modules:
       Paths_jottary
