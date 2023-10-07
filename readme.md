@@ -1,34 +1,27 @@
-# Jotter
+# Jottary
 
-Jotter (pronounced /dʒɑt.ər/) is a Turing tarpit and an even better
-Gödel-numbering than its sister language
+Jottary (pronounced /dʒɑteri/) is a unary Turing tarpit and an even
+better Gödel-numbering than its sister language
 [Jot](https://esolangs.org/wiki/Jot).
 
-## Semantics of Jotter
+Read my [blog post](https://text.marvinborner.de/2023-10-05-15.html) for
+more information.
 
-    []    -> I
-    [F0]ₗ -> (S[F]ᵣ)
-    [F0]ᵣ -> ([F]ₗS)
-    [F1]ₗ -> (K[F]ᵣ)
-    [F1]ᵣ -> ([F]ₗK)
+## Performance
 
-`[F]` converts the Jotter program `F` to combinatory logic. The
-associativity toggles between left and right (denoted by `ₗ/ᵣ`).
+The [bruijn
+implementation](https://github.com/marvinborner/bruijn/blob/main/samples/fun/jottary.bruijn):
 
-The starting state depends on the length of the program: `ₗ` if
-`len % 2 == 0` (even) and `ᵣ` if `len % 2 == 1` (odd). Don’t worry, this
-only forces the core (the empty string, `I`) to always be on the left
-side of the application.
+``` bash
+$ hyperfine "printf '1%.0s' {1..503} | bruijn -y jottary.bruijn"
+    Time (mean ± σ):     756.4 ms ±  35.2 ms    [User: 1816.9 ms, System: 1735.2 ms]
+    Range (min … max):   706.9 ms … 808.2 ms    10 runs
+```
 
-## Jot vs. Jotter
+This implementation:
 
-Jotter has exactly the same (regular) syntax as Jot, including support
-for the null program.
-
-Every Jot program can easily be translated to Jotter:
-
-    []   ->       -> I
-    [F0] -> [F]01 -> ([F]S)
-    [F1] -> ???
-
-Therefore Jotter is *Turing-complete*.
+``` bash
+$ hyperfine "jottary reduce <(printf '1%.0s' {1..503})"
+  Time (mean ± σ):      10.8 ms ±   0.7 ms    [User: 1.7 ms, System: 9.0 ms]
+  Range (min … max):     9.5 ms …  12.5 ms    163 runs
+```
